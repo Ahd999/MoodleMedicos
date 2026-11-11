@@ -10,12 +10,12 @@ You can read more about this template at the links below:
 https://github.com/HeaTTheatR/LoginAppMVC
 https://en.wikipedia.org/wiki/Model–view–controller
 """
-
+from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 
 from View.screens import screens
-
+Window.left = 1000
 
 class MoodleMedicos(MDApp):
     def __init__(self, **kwargs):
@@ -23,6 +23,8 @@ class MoodleMedicos(MDApp):
         self.load_all_kv_files(self.directory)
         # This is the screen manager that will contain all the screens of your
         # application.
+        self.theme_cls.theme_style = "Light"
+        self.theme_cls.primary_palette = "Yellow"
         self.manager_screens = MDScreenManager()
         
     def build(self) -> MDScreenManager:

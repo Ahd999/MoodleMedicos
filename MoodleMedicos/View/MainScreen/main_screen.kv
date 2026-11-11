@@ -1,1 +1,66 @@
-<MainScreenView>
+<BaseMDNavigationItem@MDNavigationItem>:
+
+<MainScreenView>:
+    theme_bg_color: "Custom"
+    md_bg_color: app.theme_cls.tertiaryContainerColor
+    padding:"15dp"
+    MDBoxLayout:
+        orientation:"vertical"
+        MDTopAppBar:
+            theme_bg_color:"Custom"
+            md_bg_color:app.theme_cls.tertiaryContainerColor
+            MDTopAppBarTitle:
+                text:"Home"
+                halign:"center"
+        MDCard:
+            theme_bg_color:"Custom"
+            md_bg_color:app.theme_cls.tertiaryContainerColor
+            size_hint_y:.3
+            radius:[0,"15dp","15dp",0]
+            state_press:0
+            ripple_effect:False
+            focus_behavior:False
+            button_behavior:False
+            MDLabel:
+                font_style:"Headline"
+                role:"small"
+                text:"Welcome to Moodle Medicos"
+                text_color:"#202016"
+                halign:"center"
+        MDCard:
+            state_press:0
+            ripple_effect:False
+            button_behavior:False
+            focus_behavior:False
+            radius:["-15dp","-15dp",0,0]
+    MDBoxLayout:
+        padding:"10dp"
+        MDNavigationBar:
+            theme_bg_color:"Custom"
+            md_bg_color:app.theme_cls.onSurfaceLightColor
+            radius:"15dp"
+            BaseMDNavigationItem:
+                active:True
+                MDNavigationItemIcon:
+                    icon:"home"
+                MDNavigationItemLabel:
+                    text:"Home"
+
+            BaseMDNavigationItem:
+                MDNavigationItemIcon:
+                    icon:"book-education-outline"
+                MDNavigationItemLabel:
+                    text:"Courses"
+
+            BaseMDNavigationItem:
+                MDNavigationItemIcon:
+                    icon:"chat"
+                MDNavigationItemLabel:
+                    text:"Connect"
+
+            BaseMDNavigationItem:
+                MDNavigationItemIcon:
+                    icon:"bell-badge-outline"
+                MDNavigationItemLabel:
+                    text:"Notifications"
+
