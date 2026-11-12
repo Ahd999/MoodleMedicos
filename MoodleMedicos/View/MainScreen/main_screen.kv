@@ -33,34 +33,5 @@
             button_behavior:False
             focus_behavior:False
             radius:["-15dp","-15dp",0,0]
-    MDBoxLayout:
-        padding:"10dp"
-        MDNavigationBar:
-            theme_bg_color:"Custom"
-            md_bg_color:app.theme_cls.onSurfaceLightColor
-            radius:"15dp"
-            BaseMDNavigationItem:
-                active:True
-                MDNavigationItemIcon:
-                    icon:"home"
-                MDNavigationItemLabel:
-                    text:"Home"
-
-            BaseMDNavigationItem:
-                MDNavigationItemIcon:
-                    icon:"book-education-outline"
-                MDNavigationItemLabel:
-                    text:"Courses"
-
-            BaseMDNavigationItem:
-                MDNavigationItemIcon:
-                    icon:"chat"
-                MDNavigationItemLabel:
-                    text:"Connect"
-
-            BaseMDNavigationItem:
-                MDNavigationItemIcon:
-                    icon:"bell-badge-outline"
-                MDNavigationItemLabel:
-                    text:"Notifications"
-
+            on_release:
+                print(self.md_bg_color)

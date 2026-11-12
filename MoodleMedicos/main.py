@@ -12,8 +12,12 @@ https://en.wikipedia.org/wiki/Model–view–controller
 """
 from kivy.core.window import Window
 from kivymd.app import MDApp
+from kivymd.uix.behaviors import focus_behavior
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.card import MDCard
 from kivymd.uix.screenmanager import MDScreenManager
 
+from View.bottom_nav import BottomNav
 from View.screens import screens
 Window.left = 1000
 
@@ -29,7 +33,22 @@ class MoodleMedicos(MDApp):
         
     def build(self) -> MDScreenManager:
         self.generate_application_screens()
-        return self.manager_screens
+        root = MDBoxLayout(
+            orientation="vertical",
+        )
+        root.add_widget(self.manager_screens)
+        bar = BottomNav()
+        bar.bind(on_switch_tabs = self.on_switch_tabs)
+        root.add_widget(
+            MDBoxLayout(
+                bar,
+                adaptive_height=True,
+                padding="10dp",
+                theme_bg_color="Custom",
+                md_bg_color=[0.9254901960784314, 0.9137254901960784, 0.8392156862745098, 1.0],
+            ),
+        )
+        return root
 
     def generate_application_screens(self) -> None:
         """
@@ -49,5 +68,6 @@ class MoodleMedicos(MDApp):
             view.name = name_screen
             self.manager_screens.add_widget(view)
 
-
+    def on_switch_tabs(self, bar, item, item_icon, item_text):
+        self.manager_screens.current = item.screen_name
 MoodleMedicos().run()
