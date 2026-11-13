@@ -19,7 +19,7 @@ from kivymd.uix.screenmanager import MDScreenManager
 
 from View.bottom_nav import BottomNav
 from View.screens import screens
-Window.left = 1000
+
 
 class MoodleMedicos(MDApp):
     def __init__(self, **kwargs):
