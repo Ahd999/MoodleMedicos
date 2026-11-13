@@ -1,5 +1,6 @@
 <BaseMDNavigationItem@MDNavigationItem>:
 
+
 <MainScreenView>:
     theme_bg_color: "Custom"
     md_bg_color: app.theme_cls.tertiaryContainerColor
@@ -21,9 +22,11 @@
             ripple_effect:False
             focus_behavior:False
             button_behavior:False
-            MDLabel:
+            AnimatedLabel:
+                id:title_text
+                markup:True
                 font_style:"Headline"
                 role:"small"
-                text:"Welcome to Moodle Medicos"
+                text:""
                 text_color:"#202016"
                 halign:"center"
