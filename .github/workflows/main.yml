@@ -125,38 +125,7 @@ jobs:
       run: yes | buildozer android debug
       env:
         BUILDOZER_WARN_ON_ROOT: 1
-
-    - name: Re-sign debug APK with custom keystore
-      run: |
-        echo "=== Files in bin/ ==="
-        ls -lh bin/ || echo "bin/ directory not found"
-
-        BUILD_TOOLS=$(ls ~/.buildozer/android/platform/android-sdk/build-tools | sort -V | tail -n 1)
-        SDK_BUILD_TOOLS=~/.buildozer/android/platform/android-sdk/build-tools/$BUILD_TOOLS
-
-        APK_ORIGINAL=$(ls bin/*.apk)
-        APK_ALIGNED=bin/app-aligned.apk
-        APK_SIGNED=bin/app-signed.apk
-
-        # Zipalign the original APK
-        $SDK_BUILD_TOOLS/zipalign -f -p 4 "$APK_ORIGINAL" "$APK_ALIGNED"
-
-        # Sign directly — apksigner replaces any existing signature
-        $SDK_BUILD_TOOLS/apksigner sign \
-          --ks "$KEYSTORE_PATH" \
-          --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} \
-          --ks-key-alias ${{ secrets.KEY_ALIAS }} \
-          --key-pass pass:${{ secrets.KEY_PASSWORD }} \
-          --out "$APK_SIGNED" \
-          "$APK_ALIGNED"
-
-        # Verify the signed APK is valid before replacing
-        $SDK_BUILD_TOOLS/apksigner verify --verbose "$APK_SIGNED"
-
-        # Replace original with signed
-        rm "$APK_ORIGINAL" "$APK_ALIGNED"
-        mv "$APK_SIGNED" "$APK_ORIGINAL"
-
+        
     - name: Upload APK
       if: always()
       uses: actions/upload-artifact@v4
