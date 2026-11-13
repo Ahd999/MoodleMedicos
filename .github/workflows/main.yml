@@ -121,25 +121,6 @@ jobs:
         python -m pip install --upgrade Cython==0.29.33
         python -m pip install buildozer==1.5.0
 
-    - name: Set up signing keystore
-      env:
-        KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-      run: |
-        echo "$KEYSTORE_BASE64" | tr -d '[:space:]' | base64 --decode > "$HOME/my-release-key.jks"
-
-        FILE_SIZE=$(stat -c%s "$HOME/my-release-key.jks")
-        echo "Decoded keystore size: $FILE_SIZE bytes"
-        if [ "$FILE_SIZE" -lt 500 ]; then
-          echo "ERROR: Decoded keystore is too small, the secret is likely corrupted."
-          exit 1
-        fi
-
-        keytool -list -keystore "$HOME/my-release-key.jks" \
-          -storepass "${{ secrets.KEYSTORE_PASSWORD }}"
-        echo "Keystore verified successfully."
-
-        echo "KEYSTORE_PATH=$HOME/my-release-key.jks" >> $GITHUB_ENV
-
     - name: Build with Buildozer
       run: yes | buildozer android debug
       env:
