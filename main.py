@@ -31,7 +31,7 @@ class MoodleMedicos(MDApp):
         self.theme_cls.primary_palette = "Yellow"
         self.manager_screens = MDScreenManager(
             theme_bg_color='Custom',
-            md_bg_color=self.theme_cls.tertiaryContainerColor
+            md_bg_color=self.theme_cls.primaryColor
         )
         
     def build(self) -> MDScreenManager:
