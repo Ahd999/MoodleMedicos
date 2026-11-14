@@ -28,7 +28,7 @@ class MoodleMedicos(MDApp):
         # This is the screen manager that will contain all the screens of your
         # application.
         self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = "Yellow"
+        self.theme_cls.primary_palette = "Gold"
         self.manager_screens = MDScreenManager(
             theme_bg_color='Custom',
             md_bg_color=self.theme_cls.tertiaryContainerColor
